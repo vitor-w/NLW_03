@@ -2,7 +2,7 @@
 
 English
  
-I added a new feature that shows a preview of the institutional cares homes on the left-up-corner of the screen.
+I added a new feature that shows a preview of the institutional cares homes on the right-up-corner of the screen.
 
 Unfortunately I couldn't make it in time, but that is what I did
 
