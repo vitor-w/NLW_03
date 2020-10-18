@@ -10,6 +10,6 @@ I have more ideas like add a function to check if there isn't another institutio
 
 Português(Brasil)
 
-Tentei adicionar um preview da casa de acolhimento institucional do marker selecionado que aparecesse no canto superior direito, infelizmente não consegui terminar a tempo, mas vale a tentativa. depois vou fazer funcionar.
+Tentei adicionar um preview da casa de acolhimento institucional do marker selecionado que aparecesse no canto superior direito da tela, infelizmente não consegui terminar a tempo, mas vale a tentativa. depois vou fazer funcionar.
 
 Tenho mais ideias do que fazer, como adicionar uma função que no cadastro, valide se já não exite a casa de acolhimento institucional.
