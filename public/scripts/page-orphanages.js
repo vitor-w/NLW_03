@@ -29,13 +29,30 @@ function addMarker({id, name, lat, lng}) {
     minWidth: 240,
     minHeight: 240,
   }).setContent(
-    `${name} <a href="/orphanage?id=${id}"> <img src="/images/arrow-white.svg"></img> </a>`
+    `${name} <a href="/orphanage?id=${id}"> <img onclick="showPreview(event)" src="/images/arrow-white.svg"></img> </a>`
   );
 
   //create and add marker
   L.marker([lat, lng], { icon })
     .addTo(map)
-    .bindPopup(popup);
+    .bindPopup(popup)
+    .on('click', function showPreview(event) {
+      const marker = event.target;
+    
+      const name = marker.dataset.name;
+      const about = marker.dataset.about;
+    
+      previewName = document.querySelector('div.preview h1');
+      previewAbout = document.querySelector('div.preview p');
+    
+      previewNameText = document.createTextNode(name);
+      previewAboutText = document.createTextNode(about);
+    
+      marker.style.visibility = "visible";
+    
+      console.log(marker.classList.item(1));
+    
+    });
 }
 
 const orphanagesSpan = document.querySelectorAll('.orphanages span');
@@ -47,6 +64,8 @@ orphanagesSpan.forEach( span => {
         lat: span.dataset.lat,
         lng: span.dataset.lng
     }
+
+    console.log(span);
 
     addMarker(orphanage);
 });

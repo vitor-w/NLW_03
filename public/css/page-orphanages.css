@@ -104,3 +104,49 @@ a.create-orphanage:hover {
 
     z-index: 5;
 }
+
+.preview {
+    z-index: 20;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    width: 40rem;
+    max-height: 60rem;
+
+    background: #15c3d6;
+    border-radius: 0 0 0 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* visibility: hidden; */
+}
+
+.preview .content_preview {
+    margin: 1.5rem 2rem;
+}
+
+.preview .image_preview {
+    width: 35rem;
+    height: 20rem;
+
+    border-radius: 15px;
+
+    margin: auto;
+    margin-bottom: 2rem;
+
+    overflow: hidden;
+
+}
+
+.preview .image_preview > img {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+}
+
+.preview h1 {
+    margin-bottom: 1rem;
+}

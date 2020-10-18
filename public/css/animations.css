@@ -31,6 +31,26 @@
     }
 }
 
+@keyframes down {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes up_more {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}
+
 .animate-up {
     animation-name: up;
     animation-duration: 300ms;
@@ -44,6 +64,18 @@
 
 .animate-appear {
     animation-name: appear;
+    animation-duration: 300ms;
+    animation-fill-mode: backwards;
+}
+
+.animate-down {
+    animation-name: down;
+    animation-duration: 300ms;
+    animation-fill-mode: backwards;
+}
+
+.animate-up_more {
+    animation-name: up_more;
     animation-duration: 300ms;
     animation-fill-mode: backwards;
 }
