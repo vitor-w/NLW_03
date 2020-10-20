@@ -29,29 +29,16 @@ function addMarker({id, name, lat, lng}) {
     minWidth: 240,
     minHeight: 240,
   }).setContent(
-    `${name} <a href="/orphanage?id=${id}"> <img onclick="showPreview(event)" src="/images/arrow-white.svg"></img> </a>`
+    `${name} <a href="/orphanage?id=${id}"> <img src="/images/arrow-white.svg"></img> </a>`
   );
 
   //create and add marker
   L.marker([lat, lng], { icon })
     .addTo(map)
     .bindPopup(popup)
-    .on('click', function showPreview(event) {
-      const marker = event.target;
-    
-      const name = marker.dataset.name;
-      const about = marker.dataset.about;
-    
-      previewName = document.querySelector('div.preview h1');
-      previewAbout = document.querySelector('div.preview p');
-    
-      previewNameText = document.createTextNode(name);
-      previewAboutText = document.createTextNode(about);
-    
-      marker.style.visibility = "visible";
-    
-      console.log(marker.classList.item(1));
-    
+    .on('click', () => {
+      const span = document.querySelector(`span[data-id="${id}"]`);
+      showPreview(span);
     });
 }
 
@@ -69,3 +56,57 @@ orphanagesSpan.forEach( span => {
 
     addMarker(orphanage);
 });
+
+function showPreviewAnimation() {
+  const preview = document.querySelector('div .preview');
+
+  function animateDown () {
+    preview.classList.remove("animate-up_more");
+    preview.classList.add("animate-down");
+  }
+
+  function animateUp () {
+    preview.classList.remove("animate-down");
+    preview.classList.add("animate-up_more");
+  }
+
+  if(preview.classList[1] == "animate-down") { 
+    animateUp();
+    setTimeout(() => {
+      animateDown();
+    },700);
+  } else { 
+    animateDown();
+  }
+  console.log(preview.classList[1]);
+
+}
+
+function showPreview(span) {
+  showPreviewAnimation();
+
+  const marker = span;
+
+  const name = marker.dataset.name;
+  const about = marker.dataset.about;
+  const images = marker.dataset.images;
+  const image = images.split(",")[0];
+
+  previewImage = document.querySelector('div .preview .content_preview .image_preview > img');
+  previewName = document.querySelector('div.preview h1');
+  previewAbout = document.querySelector('div.preview p');
+
+  previewName.innerHTML = '';
+  previewAbout.innerHTML = '';
+  previewImage.src = '';
+
+  previewImage.src = image;
+  previewNameText = document.createTextNode(name);
+  previewAboutText = document.createTextNode(about);
+
+  previewName.appendChild(previewNameText);
+  previewAbout.appendChild(previewAboutText);
+
+  //console.log(previewNameText);
+
+}

@@ -71,11 +71,11 @@
 .animate-down {
     animation-name: down;
     animation-duration: 300ms;
-    animation-fill-mode: backwards;
+    animation-fill-mode: forwards;
 }
 
 .animate-up_more {
     animation-name: up_more;
     animation-duration: 300ms;
-    animation-fill-mode: backwards;
+    animation-fill-mode: forwards;
 }
