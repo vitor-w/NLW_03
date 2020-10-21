@@ -7,7 +7,8 @@
 */
 
 //create map
-const map = L.map('mapid').setView([-27.222633,-49.6455874], 15);
+const map = L.map('mapid').setView([-27.222633,-49.6455874], 15)
+.on('click', closePreview );
 
 // create and add tileLayer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
@@ -36,10 +37,11 @@ function addMarker({id, name, lat, lng}) {
   L.marker([lat, lng], { icon })
     .addTo(map)
     .bindPopup(popup)
-    .on('click', () => {
+    .on('popupopen', () => {
       const span = document.querySelector(`span[data-id="${id}"]`);
-      showPreview(span);
+      switchPreview(span);
     });
+
 }
 
 const orphanagesSpan = document.querySelectorAll('.orphanages span');
@@ -57,33 +59,36 @@ orphanagesSpan.forEach( span => {
     addMarker(orphanage);
 });
 
-function showPreviewAnimation() {
-  const preview = document.querySelector('div .preview');
+const preview = document.querySelector('div .preview');
 
-  function animateDown () {
-    preview.classList.remove("animate-up_more");
-    preview.classList.add("animate-down");
-  }
+function openPreview () {
+  preview.classList.remove("animate-up_more");
+  preview.classList.add("animate-down");
+}
 
-  function animateUp () {
-    preview.classList.remove("animate-down");
-    preview.classList.add("animate-up_more");
-  }
+function closePreview () {
+  preview.classList.remove("animate-down");
+  preview.classList.add("animate-up_more");
+}
 
-  if(preview.classList[1] == "animate-down") { 
-    animateUp();
+function switchPreview(span) {
+  if(preview.classList[1] == "animate-up_more") {
+    showPreviewInfo(span);
+    openPreview();
+    console.log("it`s up");
+  }  else {
+    closePreview();
     setTimeout(() => {
-      animateDown();
+      showPreviewInfo(span);
+      openPreview();
     },700);
-  } else { 
-    animateDown();
   }
+
   console.log(preview.classList[1]);
 
 }
 
-function showPreview(span) {
-  showPreviewAnimation();
+function showPreviewInfo(span) {
 
   const marker = span;
 
@@ -100,10 +105,10 @@ function showPreview(span) {
   previewAbout.innerHTML = '';
   previewImage.src = '';
 
-  previewImage.src = image;
   previewNameText = document.createTextNode(name);
   previewAboutText = document.createTextNode(about);
 
+  previewImage.src = image;
   previewName.appendChild(previewNameText);
   previewAbout.appendChild(previewAboutText);
 
