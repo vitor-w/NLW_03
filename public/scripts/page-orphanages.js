@@ -61,16 +61,20 @@ orphanagesSpan.forEach( span => {
 
 const preview = document.querySelector('div .preview');
 
+// Function to switch class of preview and make it go down
 function openPreview () {
   preview.classList.remove("animate-up_more");
   preview.classList.add("animate-down");
+  preview.style.visibility = "visible";
 }
 
+// Function to switch class of preview and make it go up
 function closePreview () {
   preview.classList.remove("animate-down");
   preview.classList.add("animate-up_more");
 }
 
+// Function that makes the switch of info between care homes with an animation, going up and down
 function switchPreview(span) {
   if(preview.classList[1] == "animate-up_more") {
     showPreviewInfo(span);
@@ -88,6 +92,7 @@ function switchPreview(span) {
 
 }
 
+// Function that get the 
 function showPreviewInfo(span) {
 
   const marker = span;
