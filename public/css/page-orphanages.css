@@ -121,11 +121,13 @@ a.create-orphanage:hover {
     flex-direction: column;
     align-items: center;
 
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 .preview .content_preview {
-    margin: 1.5rem 2rem;
+    width: 35rem;
+    margin: 1.5rem 0;
+   
 }
 
 .preview .image_preview {
@@ -145,8 +147,14 @@ a.create-orphanage:hover {
     width: 100%;
     height: 20rem;
     object-fit: cover;
+
 }
 
 .preview h1 {
     margin-bottom: 1rem;
+}
+
+.preview p {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
